@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jonathan Allen | Engineering Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --dark: #0f172a;
+            --darker: #0a1120;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --card-bg: rgba(30, 41, 59, 0.8);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            color: var(--light);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 40px 0;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #3b82f6, #10b981);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            background: linear-gradient(to right, #4ade80, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover {
+            color: var(--primary);
+        }
+        
+        /* Navigation */
+        nav {
+            margin: 20px 0 40px;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover, 
+        .nav-links a.active {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--primary);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--light);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .section-header p {
+            max-width: 700px;
+            margin: 20px auto 0;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        /* Project Styles */
+        .projectItem {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            margin-bottom: 40px;
+            border: 1px solid var(--card-border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .projectItem:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .projectContent {
+            display: flex;
+            padding: 30px;
+            gap: 30px;
+            width: 100%;
+        }
+        
+        .projectDetails {
+            flex: 1;
+        }
+        
+        .projectImage {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #1e293b, #0f172a);
+        }
+        
+        .projectImage img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .projectImage:hover img {
+            transform: scale(1.05);
+        }
+        
+        .darkerText {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+        
+        .projectDetails h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+        
+        .projectDetails p {
+            margin-bottom: 25px;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+        
+        .techStack {
+            margin: 30px 0;
+        }
+        
+        .techCategory {
+            margin-bottom: 25px;
+        }
+        
+        .techCategory h4 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .techCategory h4 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .techLogos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .techLogo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.7);
+            padding: 12px;
+            border-radius: 10px;
+            width: 90px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .techLogo:hover {
+            transform: translateY(-5px);
+            background: rgba(30, 64, 175, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+        }
+        
+        .techLogo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+        
+        .techLogo span {
+            font-size: 0.75rem;
+            text-align: center;
+            color: var(--gray);
+        }
+        
+        .linkContainer {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .linkItem {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(30, 64, 175, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .linkItem:hover {
+            background: rgba(37, 99, 235, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+        }
+        
+        .linkItem div {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .linkItem p {
+            margin: 0;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(30, 41, 59, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .projectContent {
+                flex-direction: column;
+            }
+            
+            .projectImage {
+                max-height: 250px;
+            }
+            
+            .techLogo {
+                width: 80px;
+                padding: 10px;
+            }
+            
+            .linkContainer {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .nav-links {
+                gap: 10px;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile-img">
+                <i class="fas fa-user-astronaut"></i>
+            </div>
+            <div class="header-content">
+                <h1>Jonathan Allen</h1>
+                <div class="subtitle">Aero-Mechanical & Electrical Engineer | Data Scientist</div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Glasgow, UK</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>j.allen@strath.ac.uk</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+44 123 456 7890</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#about" class="active">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <section id="projects">
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <p>Engineering and data science projects showcasing technical expertise and problem-solving skills</p>
+            </div>
+            
+            <!-- Project 1 -->
+            <div class="projectItem">
+                <div class="projectContent">
+                    <div class="projectDetails">
+                        <p class="darkerText">June 2025 - September 2025</p>
+                        <h3>Estate Complexity and Modernity Assessment</h3>
+                        <p>Engineered scalable back-end data pipelines to process and transform internal restricted datasets for analysis and AI integration at Barclays Bank PLC. Implemented Text-to-SQL NLP capabilities to translate user queries into structured data interactions.</p>
+                        
+                        <div class="techStack">
+                            <div class="techCategory">
+                                <h4><i class="fas fa-server"></i> Backend Technologies</h4>
+                                <div class="techLogos">
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                                        <span>Python</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQL">
+                                        <span>SQL</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+                                        <span>Node.js</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="techCategory">
+                                <h4><i class="fas fa-brain"></i> AI & Data</h4>
+                                <div class="techLogos">
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
+                                        <span>TensorFlow</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas">
+                                        <span>Pandas</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy">
+                                        <span>NumPy</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="techCategory">
+                                <h4><i class="fas fa-cloud"></i> Cloud & Tools</h4>
+                                <div class="techLogos">
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS">
+                                        <span>AWS</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" alt="GitLab">
+                                        <span>GitLab</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+                                        <span>Docker</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="linkContainer">
+                            <a target="_blank" href="#" class="linkItem">
+                                <div>
+                                    <i class="fa-brands fa-github"></i>
+                                </div>
+                                <p>GitHub</p>
+                            </a>
+                            <a target="_blank" href="#" class="linkItem">
+                                <div>
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                </div>
+                                <p>Case Study</p>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="projectImage">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Banking Data Analysis">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 2 -->
+            <div class="projectItem">
+                <div class="projectContent">
+                    <div class="projectDetails">
+                        <p class="darkerText">March 2023 - August 2023</p>
+                        <h3>Financial Forecasting & Sentiment Analysis</h3>
+                        <p>Developed four advanced financial forecasting models improving prediction accuracy by 34% using Statsmodels and XGBoost. Created a sentiment analysis model processing over 100,000 customer feedback entries using NLP techniques in Python.</p>
+                        
+                        <div class="techStack">
+                            <div class="techCategory">
+                                <h4><i class="fas fa-chart-line"></i> Data Science</h4>
+                                <div class="techLogos">
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                                        <span>Python</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" alt="R">
+                                        <span>R</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas">
+                                        <span>Pandas</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="techCategory">
+                                <h4><i class="fas fa-robot"></i> Machine Learning</h4>
+                                <div class="techLogos">
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
+                                        <span>TensorFlow</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch">
+                                        <span>PyTorch</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="Jupyter">
+                                        <span>Jupyter</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="techCategory">
+                                <h4><i class="fas fa-chart-bar"></i> Visualization</h4>
+                                <div class="techLogos">
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg" alt="MATLAB">
+                                        <span>MATLAB</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rstudio/rstudio-original.svg" alt="RStudio">
+                                        <span>RStudio</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" style="filter: invert(1);">
+                                        <span>Power BI</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="linkContainer">
+                            <a target="_blank" href="#" class="linkItem">
+                                <div>
+                                    <i class="fa-brands fa-github"></i>
+                                </div>
+                                <p>GitHub</p>
+                            </a>
+                            <a target="_blank" href="#" class="linkItem">
+                                <div>
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                                <p>Analysis</p>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="projectImage">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" alt="Financial Analysis">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 3 -->
+            <div class="projectItem">
+                <div class="projectContent">
+                    <div class="projectDetails">
+                        <p class="darkerText">September 2023 - May 2024</p>
+                        <h3>RC Aircraft Design & Optimization</h3>
+                        <p>Led the design, optimization and manufacturing of an RC aircraft at University of Strathclyde. Utilized Python for computational analysis and XFLR5 for aerodynamic simulation to achieve optimal flight performance.</p>
+                        
+                        <div class="techStack">
+                            <div class="techCategory">
+                                <h4><i class="fas fa-cogs"></i> Engineering</h4>
+                                <div class="techLogos">
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                                        <span>Python</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy">
+                                        <span>NumPy</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansys/ansys-original.svg" alt="ANSYS">
+                                        <span>ANSYS</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="techCategory">
+                                <h4><i class="fas fa-wind"></i> Aerodynamics</h4>
+                                <div class="techLogos">
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg" alt="MATLAB">
+                                        <span>MATLAB</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://www.xflr5.tech/xflr5.png" alt="XFLR5">
+                                        <span>XFLR5</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidworks/solidworks-original.svg" alt="SolidWorks">
+                                        <span>SolidWorks</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="techCategory">
+                                <h4><i class="fas fa-microchip"></i> Embedded Systems</h4>
+                                <div class="techLogos">
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C">
+                                        <span>C</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++">
+                                        <span>C++</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg" alt="Raspberry Pi">
+                                        <span>Raspberry Pi</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="linkContainer">
+                            <a target="_blank" href="#" class="linkItem">
+                                <div>
+                                    <i class="fa-brands fa-github"></i>
+                                </div>
+                                <p>GitHub</p>
+                            </a>
+                            <a target="_blank" href="#" class="linkItem">
+                                <div>
+                                    <i class="fa-solid fa-plane"></i>
+                                </div>
+                                <p>Demo</p>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="projectImage">
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1494&q=80" alt="RC Aircraft">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 4 -->
+            <div class="projectItem">
+                <div class="projectContent">
+                    <div class="projectDetails">
+                        <p class="darkerText">January 2025 - April 2025</p>
+                        <h3>Velocity Correction Cruise Controller</h3>
+                        <p>Designed a PID controller system for car cruise control using MATLAB and Simulink. Implemented dynamic modeling and gain tuning for optimal performance in maintaining consistent vehicle speed.</p>
+                        
+                        <div class="techStack">
+                            <div class="techCategory">
+                                <h4><i class="fas fa-calculator"></i> Simulation</h4>
+                                <div class="techLogos">
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg" alt="MATLAB">
+                                        <span>MATLAB</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/d9d4b20c-5b7b-4b0d-8c6e-3ca2c4a5c3e0/ae7c3d3b-6d3f-4d1e-8b8c-1d3b3b3b3b3b/images/screenshot.png" alt="Simulink">
+                                        <span>Simulink</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                                        <span>Python</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="techCategory">
+                                <h4><i class="fas fa-project-diagram"></i> Control Systems</h4>
+                                <div class="techLogos">
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++">
+                                        <span>C++</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt="Arduino">
+                                        <span>Arduino</span>
+                                    </div>
+                                    <div class="techLogo">
+                                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg" alt="Raspberry Pi">
+                                        <span>Raspberry Pi</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="linkContainer">
+                            <a target="_blank" href="#" class="linkItem">
+                                <div>
+                                    <i class="fa-brands fa-github"></i>
+                                </div>
+                                <p>GitHub</p>
+                            </a>
+                            <a target="_blank" href="#" class="linkItem">
+                                <div>
+                                    <i class="fa-solid fa-car"></i>
+                                </div>
+                                <p>Simulation</p>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="projectImage">
+                        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Cruise Control">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>Jonathan Allen</h3>
+                <p>Aero-Mechanical & Electrical Engineer | Data Scientist</p>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>j.allen@strath.ac.uk</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Glasgow, United Kingdom</span>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    &copy; 2025 Jonathan Allen. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Active navigation link based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Project hover effect enhancement
+        const projectItems = document.querySelectorAll('.projectItem');
+        
+        projectItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateY(-10px)';
+                item.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.4)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateY(0)';
+                item.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+            });
+        });
+    </script>
+</body>
+</html>
